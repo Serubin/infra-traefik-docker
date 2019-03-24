@@ -6,9 +6,21 @@ services:
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
     ports:
       - "80:80"     # The HTTP port
+      - "443:443"
       - "8080:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
       - /opt/data/traefik/traefik.toml:/traefik.toml
       - /opt/data/traefik/acme.json:/acme.json
-
+    networks:
+      - traefik
+      - default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.domain=admin.serubin.net"
+      - "traefik.frontend.whiteList.sourceRange=172.110.20.64/32,129.21.39.75/32"
+      - "traefik.frontend.rule=Host: admin.serubin.net; PathPrefixStrip: /traefik"
+      - "traefik.port=8080"
+networks:
+  traefik:
+    external: true

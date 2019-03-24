@@ -9,4 +9,6 @@ services:
       - "8080:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+      - /opt/data/traefik/traefik.toml:/traefik.toml
+      - /opt/data/traefik/acme.json:/acme.json
 

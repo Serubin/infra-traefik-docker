@@ -3,9 +3,17 @@ version: '3'
 
 services:
   traefik:
-    image: traefik # The official Traefik docker image
-    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+    image: traefik:v1.7 # The official Traefik docker image
+    command: --api --docker --docker.swarmmode --loglevel=INFO # Enables the web UI and tells Traefik to listen to docker
     restart: always
+    deploy:
+
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
     ports:
       - "80:80"     # The HTTP port
       - "443:443"
@@ -14,14 +22,15 @@ services:
       - /opt/data/traefik/traefik.toml:/traefik.toml
       - /opt/data/traefik/acme.json:/acme.json
     networks:
-      - traefik
+      - service-default
       - default
     labels:
       - "traefik.enable=true"
       - "traefik.domain=admin.serubin.net"
       - "traefik.frontend.whiteList.sourceRange=172.110.20.64/32,129.21.39.75/32"
       - "traefik.frontend.rule=Host: admin.serubin.net; PathPrefixStrip: /traefik"
+      - "traefik.docker.network=service-default"
       - "traefik.port=8080"
 networks:
-  traefik:
+  service-default:
     external: true

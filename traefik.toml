@@ -15,7 +15,7 @@ defaultEntryPoints = ["https","http"]
 [retry]
 
 [docker]
-endpoint = "unix:///var/run/docker.sock"
+swarmMode = true
 domain = "cloud.serubin.net"
 watch = true
 exposedByDefault = false

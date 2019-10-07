@@ -44,8 +44,6 @@ services:
       - "traefik.frontend.rule=Host: admin.serubin.net; PathPrefixStrip: /traefik"
       - "traefik.docker.network=traefik-public"
       - "traefik.port=8080"
-    depends_on:
-      - consul-leader
 
 networks:
   traefik-public:

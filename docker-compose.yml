@@ -40,7 +40,7 @@ services:
       - "traefik.enable=true"
       - "traefik.tags=traefik-public"
       - "traefik.domain=admin.serubin.net"
-        # - "traefik.frontend.whiteList.sourceRange=172.110.20.64/32,129.21.39.75/32"
+      - "traefik.frontend.whiteList.sourceRange=172.110.20.64/32,129.21.39.75/32"
       - "traefik.frontend.rule=Host: admin.serubin.net; PathPrefixStrip: /traefik"
       - "traefik.docker.network=traefik-public"
       - "traefik.port=8080"

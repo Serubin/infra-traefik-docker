@@ -9,8 +9,7 @@ services:
       --docker
       --consul
       --consul.endpoint="consul-leader:8500"
-      --accessLog
-      --loglevel=ERROR # Enables the web UI and tells Traefik to listen to docker
+      --loglevel=WARN # Enables the web UI and tells Traefik to listen to docker
     restart: always
     deploy:
 

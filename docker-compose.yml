@@ -3,7 +3,8 @@ version: '3.3'
 
 services:
   traefik:
-    image: traefik:v1.7 # The official Traefik docker image
+    image: serubin/traefik # Custom image of traefik - control version in Dockerfile
+    build: .
     command: >
       --api
       --docker
@@ -31,7 +32,6 @@ services:
         mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-      - /opt/data/traefik/traefik.toml:/traefik.toml # TODO bake this file into the image correctly
       - /opt/data/traefik/acme.json:/acme.json
     networks:
       - default

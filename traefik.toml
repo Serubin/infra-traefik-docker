@@ -2,6 +2,7 @@ debug = false
 
 logLevel = "ERROR"
 defaultEntryPoints = ["https","http"]
+constraints = [ "tag==traefik-public" ]
 
 [entryPoints]
   [entryPoints.http]
@@ -15,7 +16,7 @@ defaultEntryPoints = ["https","http"]
 [retry]
 
 [docker]
-endpoint = "unix:///var/run/docker.sock"
+swarmMode = true
 domain = "cloud.serubin.net"
 watch = true
 exposedByDefault = false

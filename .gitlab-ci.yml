@@ -12,6 +12,7 @@ build-prod:
     - docker
   stage: build
   script:
+    - docker-compose pull
     - docker-compose build
   only:
     - master
@@ -22,6 +23,8 @@ deploy-prod:
     - swarm
   stage: deploy
   script:
+    - docker stack rm $(echo $CI_PROJECT_NAME | sed 's/-docker//')
+    - sleep 10s
     - docker stack deploy -c docker-compose.yml --with-registry-auth $(echo $CI_PROJECT_NAME | sed 's/-docker//')
   environment:
     name: production

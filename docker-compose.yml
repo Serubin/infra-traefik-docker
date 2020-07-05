@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
   traefik:
-    image: serubin/traefik # Custom image of traefik - control version in Dockerfile
+    image: ${IMAGE_TAG} # Filled by docker ci
     build: .
     command: >
       --api

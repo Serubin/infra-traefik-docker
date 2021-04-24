@@ -21,13 +21,6 @@ services:
           - spread: node.id
       restart_policy:
         condition: on-failure
-    ports:
-      - target: 80
-        published: 80
-        mode: host
-      - target: 443
-        published: 443
-        mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
       - /opt/data/traefik/acme.json:/acme.json

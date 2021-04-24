@@ -1,0 +1,10 @@
+[http.routers]
+    [http.routers.to-traefik-1]
+    rule = "HostRegexp(`{domain:.+}`)"
+    service = traefik-1
+    priority = 1
+
+[http.services]
+  [http.services.traefik-1.loadBalancer]
+    [[http.services.traefik-1.loadBalancer.servers]]
+      url = http://traefik-2

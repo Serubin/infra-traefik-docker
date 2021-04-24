@@ -17,7 +17,8 @@ build-prod:
   script:
     - IMAGE_TAG=$IMAGE_TAG docker-compose pull
     - IMAGE_TAG=$IMAGE_TAG docker-compose build
-    - docker push $IMAGE_TAG
+    - docker push $IMAGE_TAG-v1
+    - docker push $IMAGE_TAG-v2
   only:
     - master
     - /^test\/.*$/i

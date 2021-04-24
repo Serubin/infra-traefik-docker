@@ -20,6 +20,7 @@ build-prod:
     - docker push $IMAGE_TAG
   only:
     - master
+    - test/*
 
 deploy-prod:
   tags:
@@ -36,4 +37,5 @@ deploy-prod:
 
   only:
     - master
+    - test/*
 

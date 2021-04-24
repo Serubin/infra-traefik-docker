@@ -1,4 +1,4 @@
-FROM traefik:v1.7
+FROM traefik:2.4
 
 COPY ./traefik-v2.toml /traefik.toml
 COPY ./traefik_dynamic.toml /traefik_dynamic.toml
